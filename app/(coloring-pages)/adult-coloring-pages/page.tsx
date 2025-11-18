@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
-import { } from "@/config/seo"
 
 export const metadata: Metadata = {
   title: "Adult Coloring Pages | Sophisticated Designs for Stress Relief",
@@ -25,10 +24,6 @@ export const metadata: Metadata = {
 export default function AdultColoringPages() {
   return (
     <>
-      <SchemaWebPage
-        name="Adult Coloring Pages"
-        description="Discover our collection of adult coloring pages featuring intricate mandalas, detailed patterns, and complex designs."
-      />
 
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}

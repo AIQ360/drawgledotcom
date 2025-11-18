@@ -1,9 +1,14 @@
 import Image from "next/image"
 import Link from "next/link"
 import type { Metadata } from "next"
-import { WebsiteSchema } from "@/components/seo/schema"
-import { ColoringBookGeneratorSchema, FAQSchema, BreadcrumbSchema } from "@/components/seo/coloring-book-schema"
-import { Breadcrumb } from "@/components/ui/breadcrumb"
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb"
 
 export const metadata: Metadata = {
   title: "Coloring Book Generator | Create Custom PDF Coloring Books for Kids",
@@ -45,23 +50,19 @@ export const metadata: Metadata = {
 export default function ColoringBookGeneratorPage() {
   return (
     <div className="bg-white">
-      <WebsiteSchema
-        title="Coloring Book Generator | Create Custom Coloring Books for Kids"
-        description="Create and download custom coloring books for kids with our free coloring book generator. Make PDF coloring books for 3-7 year olds with Disney-inspired designs."
-        path="/coloring-book-generator"
-        type="WebPage"
-      />
-      <ColoringBookGeneratorSchema />
-      <FAQSchema />
-      <BreadcrumbSchema path="/coloring-book-generator" />
+    
 
-      {/* Breadcrumb Navigation */}
-      <Breadcrumb
-        items={[
-          { label: "Coloring Pages", href: "/coloring-pages" },
-          { label: "Coloring Book Generator", href: "/coloring-book-generator", active: true },
-        ]}
-      />
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/coloring-pages">Coloring Pages</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Coloring Book Generator</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
 
       {/* What is a Coloring Book Generator - Added for Featured Snippet */}
       <section className="py-8 bg-white border-b border-gray-100">

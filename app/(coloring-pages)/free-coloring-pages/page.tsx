@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { SchemaWebPage } from "@/components/seo/schema"
 
 export const metadata: Metadata = {
   title: "100% Free Coloring Pages to Download and Print | Drawgle",
@@ -25,10 +24,6 @@ export const metadata: Metadata = {
 export default function FreeColoringPages() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <SchemaWebPage
-        name="Free Coloring Pages"
-        description="Browse our collection of completely free coloring pages for kids and adults. No registration, no payment required - just download, print and enjoy!"
-      />
 
       {/* Breadcrumbs */}
       <nav className="flex text-sm text-gray-600 mb-6">

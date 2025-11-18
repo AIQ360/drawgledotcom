@@ -1,8 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
 import Link from "next/link"
-import PublicHeader from "@/components/layouts/public-header"
-import PublicFooter from "@/components/layouts/public-footer"
 
 export const metadata: Metadata = {
   title: "Coloring Pages | Drawgle",
@@ -17,7 +15,7 @@ export default function ColoringPagesLayout({
 }) {
   return (
     <div className="min-h-screen bg-white flex flex-col">
-      <PublicHeader />
+      
 
       {/* Main content */}
       <main className="flex-grow">{children}</main>
@@ -44,7 +42,7 @@ export default function ColoringPagesLayout({
         </div>
       </section>
 
-      <PublicFooter />
+      
     </div>
   )
 }

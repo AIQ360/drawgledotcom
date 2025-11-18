@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
-import { SchemaWebPage } from "@/components/seo/schema"
 
 export const metadata: Metadata = {
   title: "High-Quality Printable Coloring Pages | Ready to Print | Drawgle",
@@ -25,10 +24,6 @@ export const metadata: Metadata = {
 export default function PrintableColoringPages() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <SchemaWebPage
-        name="Printable Coloring Pages"
-        description="High-quality printable coloring pages optimized for perfect printing results. Printer-friendly designs for kids and adults with printing tips and tricks."
-      />
 
       {/* Breadcrumbs */}
       <nav className="flex text-sm text-gray-600 mb-6">

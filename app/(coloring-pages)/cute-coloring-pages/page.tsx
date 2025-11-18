@@ -1,7 +1,6 @@
 import type { Metadata } from "next"
 import Link from "next/link"
 import Image from "next/image"
-import { SchemaWebPage } from "@/components/seo/schema"
 
 export const metadata: Metadata = {
   title: "Cute Coloring Pages | Adorable Printable Designs for All Ages",
@@ -25,10 +24,6 @@ export const metadata: Metadata = {
 export default function CuteColoringPages() {
   return (
     <>
-      <SchemaWebPage
-        name="Cute Coloring Pages"
-        description="Download free cute coloring pages featuring adorable animals, kawaii characters, and sweet designs."
-      />
 
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumb */}
