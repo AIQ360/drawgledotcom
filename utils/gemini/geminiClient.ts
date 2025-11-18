@@ -1,11 +1,11 @@
-import { GoogleGenerativeAI } from "@google/generative-ai"
+import { GoogleGenAI } from "@google/genai"
 
 // Initialize the Gemini API client
-let geminiClient: GoogleGenerativeAI | null = null
+let geminiClient: GoogleGenAI | null = null
 
 export function getGeminiClient() {
   if (!geminiClient && process.env.GEMINI_API_KEY) {
-    geminiClient = new GoogleGenerativeAI(process.env.GEMINI_API_KEY)
+    geminiClient = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY })
   }
 
   if (!geminiClient) {
