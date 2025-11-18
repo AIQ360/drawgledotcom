@@ -12,7 +12,6 @@ import { NavigationProgress } from "@/components/navigation-progress"
 import { createClient } from "@/utils/supabase/server"
 import { creditService } from "@/lib/credits"
 import { redirect } from "next/navigation"
-import OnboardingGate from "@/components/OnboardingGate"
 import Script from "next/script"
 import ClarityInit from "@/components/ClarityInit"
 
@@ -81,7 +80,6 @@ export default async function DashboardLayout({
           })();
         `}
       </Script>
-      <OnboardingGate>
         <SidebarProvider>
           <AppSidebar 
             user={{
@@ -120,7 +118,6 @@ export default async function DashboardLayout({
             </div>
           </SidebarInset>
         </SidebarProvider>
-      </OnboardingGate>
     </div>
   )
 }

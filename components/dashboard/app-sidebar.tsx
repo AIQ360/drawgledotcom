@@ -33,7 +33,7 @@ import { createClient } from "@/utils/supabase/client"
 const navSecondary = [
   {
     title: "Support",
-    url: "mailto:support@unrealshot.com",
+    url: "mailto:support@drawgle.com",
     icon: Send,
   },
 ]
@@ -89,34 +89,6 @@ export function AppSidebar({
   }
 
   const supabase = createClient()
-  const [hasTrainedModel, setHasTrainedModel] = React.useState(false)
-
-  React.useEffect(() => {
-    let active = true
-    ;(async () => {
-      try {
-        let uid = userData.id
-        if (!uid) {
-          const { data: { user } } = await supabase.auth.getUser()
-          uid = user?.id
-        }
-        if (!uid) {
-          if (active) setHasTrainedModel(false)
-          return
-        }
-        const { data } = await supabase
-          .from("models")
-          .select("id")
-          .eq("user_id", uid)
-          .eq("status", "finished")
-          .limit(1)
-        if (active) setHasTrainedModel(!!data && data.length > 0)
-      } catch (e) {
-        if (active) setHasTrainedModel(false)
-      }
-    })()
-    return () => { active = false }
-  }, [supabase, userData.id])
 
   const navItems = React.useMemo(() => [
     {
@@ -125,29 +97,22 @@ export function AppSidebar({
       icon: SquareTerminal,
       isActive: true,
     },
-    ...(hasTrainedModel ? [
       {
-        title: "Generate Photos",
-        url: "/generate-image",
+        title: "Generate Coloring Pages",
+        url: "/create",
         icon: SparklesIcon,
       },
       {
-      title: "Trained Models",
-      url: "/trained-models",
-      icon: FolderOpen,
-    },
-    ] : []),
+        title: "Create Books",
+        url: "/gallery",
+        icon: FolderOpen,
+      },
     {
-      title: "My Gallery",
-      url: "/gallery",
+      title: "My Coloring Books",
+      url: "/books",
       icon: ImageIcon,
     },
-    {
-      title: "Photo Upload Guide",
-      url: "/photo-upload-guide",
-      icon: Upload,
-    },
-  ], [hasTrainedModel])
+  ], [])
 
   return (
     <Sidebar variant="inset" {...props}>

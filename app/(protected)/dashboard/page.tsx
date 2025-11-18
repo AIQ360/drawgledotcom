@@ -1,125 +1,50 @@
 import { Metadata } from 'next'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { LucideUserRoundSearch, WandSparklesIcon } from "lucide-react"
-import Link from "next/link"
-import ClientSideModelsList from "@/components/realtime/ClientSideModelsList"
-import { createClient } from '@/utils/supabase/server'
-import { redirect } from "next/navigation"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { MiniAreaChart } from "@/components/dashboard/mini-stats"
+import { cn } from "@/lib/utils"
 import { commonPageMetadata } from '@/lib/seo'
-import FeedbackForm from "@/components/FeedbackForm"
 
 export const metadata: Metadata = commonPageMetadata.dashboard()
 
-export default async function DashboardPage() {
-  const supabase = await createClient()
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
-
-  if (!user) {
-    redirect("/login")
-  }
-
-  // Get real data for production
-  const { data: models } = await supabase
-    .from("models")
-    .select(`*, samples (*)`)
-    .eq("user_id", user.id)
-    .order("created_at", { ascending: false })
-
-  const { data: credits } = await supabase
-    .from("credits")
-    .select("credits")
-    .eq("user_id", user.id)
-    .single()
-
-  const modelCount = models?.length || 0
-  const creditsBalance = credits?.credits || 0
-
+export default function DashboardPage() {
   return (
-    <div className="space-y-8">
+    <div className={cn("grid gap-4", "md:grid-cols-2 lg:grid-cols-4")}>
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-muted-foreground">Revenue</CardTitle>
+        </CardHeader>
+        <CardContent className="text-2xl font-semibold">$82,450</CardContent>
+      </Card>
 
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-muted-foreground">Orders</CardTitle>
+        </CardHeader>
+        <CardContent className="text-2xl font-semibold">1,284</CardContent>
+      </Card>
 
+      <Card>
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-muted-foreground">Customers</CardTitle>
+        </CardHeader>
+        <CardContent className="text-2xl font-semibold">3,912</CardContent>
+      </Card>
 
-      {/* Main Training Options - Clean Black & White */}
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card className="bg-gradient-to-br from-white to-gray-50">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-gray-900">Start Your Personalized AI Photoshoot</CardTitle>
-            <CardDescription className="text-gray-600">
-Unlock the highest realism. Upload 6-10 photos now to train your custom model and generate professional images with your own prompts.            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Link href="/models/train/custom">
-              <Button className="w-full bg-gray-900 text-white hover:bg-gray-800 border-0">
-                                <WandSparklesIcon className="ml-2 h-4 w-4" />
-                Upload Photos & Start Training
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
+      <Card className="lg:col-span-1">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm text-muted-foreground">Conversion</CardTitle>
+        </CardHeader>
+        <CardContent className="text-2xl font-semibold">3.7%</CardContent>
+      </Card>
 
-        <Card className="bg-gradient-to-br from-gray-50 to-white  transition-shadow">
-          <CardHeader>
-            <CardTitle className="text-xl font-bold text-gray-900">Browse Styles & Select Your Pack</CardTitle>
-            <CardDescription className="text-gray-600">
-iew all professional styles (Corporate, Glamour, Founder, etc.) and choose the perfect pack to unlock training.            </CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Link href="/packs">
-              <Button className="w-full bg-gray-900 text-white hover:bg-gray-800 border-0">
-                                <LucideUserRoundSearch className="ml-2 h-4 w-4" />
-               View Packs & Unlock Styles
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-      </div>
-      {/* Trained Models Section - Shows real models */}
-      {modelCount > 0 && (
-        <div className="space-y-4">
-          <ClientSideModelsList serverModels={models || []} />
-        </div>
-      )}
-      {/* Quick Actions - Clean Design */}
-      <div className="grid gap-4 md:grid-cols-2">
-        <Card className="bg-gradient-to-br from-white to-gray-50">
-          <CardHeader>
-            <CardTitle className="text-lg font-bold text-gray-900">Buy Credits?</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-gray-600 mb-4">
-              Purchase credits to train models and generate photos
-            </p>
-            <Link href="/buy-credits">
-              <Button variant="outline" className="w-full border-gray-300 text-gray-800 hover:bg-gray-100 hover:text-gray-900">
-                Buy Credits
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-gradient-to-br from-gray-50 to-white">
-          <CardHeader>
-            <CardTitle className="text-lg font-bold text-gray-900">View Gallery</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-gray-600 mb-4">
-              See all your AI generated photos in your private gallery
-            </p>
-            <Link href="/gallery">
-              <Button variant="outline" className="w-full border-gray-300 text-gray-800 hover:bg-gray-100 hover:text-gray-900">
-                Open Gallery
-              </Button>
-            </Link>
-          </CardContent>
-        </Card>
-
-    
-      </div>
-      <FeedbackForm userId={user.id} />
+      <Card className="md:col-span-2 lg:col-span-3">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-sm">Revenue (Last 7 days)</CardTitle>
+        </CardHeader>
+        <CardContent className="h-64">
+          <MiniAreaChart />
+        </CardContent>
+      </Card>
     </div>
   )
 }

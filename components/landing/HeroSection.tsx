@@ -6,7 +6,6 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { Caveat } from 'next/font/google';
-import VideoModal from "@/components/VideoModal";
 
 // Configure the Caveat font
 const caveat = Caveat({
@@ -351,13 +350,7 @@ export function HeroSection() {
         }
       `}</style>
 
-      {/* Video Modal */}
-      <VideoModal
-        isOpen={isVideoModalOpen}
-        onClose={() => setIsVideoModalOpen(false)}
-        videoUrl="https://www.youtube.com/embed/UL357H91Gc0"
-        title="How It Works - AI Photo Generation Demo"
-      />
+      
     </section>
   )
 }
