@@ -62,23 +62,23 @@ export interface OrganizationSchema {
 
 // Default SEO Configuration
 export const defaultSEO: SEOConfig = {
-  title: 'The #1 Realistic AI Photoshoot Generator | Unrealshot AI',
-  description: "Stop scrolling through photos you don't love. Unrealshot turns your selfies into a stunning, realistic AI photoshoot. Get the perfect shot for every profile, from professional headshots to dating pics.",
+  title: 'AI Coloring Book Builder | Drawgle',
+  description: "Create stunning AI coloring books with Drawgle's AI Coloring Book Builder. Turn your selfies into vibrant, realistic colorings in seconds.",
   keywords: [
-    'AI photoshoot generator',
-    'AI headshot generator',
-    'realistic AI photos',
-    'AI photos from selfies',
-    'professional AI photos',
-    'AI photo generator',
-    'AI portraits',
-    'studio-quality AI',
-    'LinkedIn headshot',
+    'AI coloring book builder',
+    'AI coloring books',
+    'realistic AI coloring',
+    'AI colorings from selfies',
+    'professional AI coloring',
+    'AI coloring generator',
+    'AI colorings',
+    'studio-quality AI coloring',
+    'LinkedIn coloring book',
     'dating profile picture'
   ],  
-    author: 'Unrealshot AI',
-  siteUrl: process.env.NEXT_PUBLIC_APP_URL || 'https://www.unrealshot.com',
-  siteName: 'Unrealshot AI',
+    author: 'Drawgle',
+  siteUrl: process.env.NEXT_PUBLIC_APP_URL || 'https://www.drawgle.com',
+  siteName: 'Drawgle',
   locale: 'en_US',
   type: 'website',
   robots: 'index, follow',
@@ -90,19 +90,19 @@ export const defaultSEO: SEOConfig = {
 // Social Media Configuration
 export const socialConfig: SocialConfig = {
   twitter: {
-    handle: '@unrealshotai', // Replace with your actual Twitter handle
-    site: '@unrealshotai', // Replace with your actual Twitter handle
+    handle: '@drawgle', // Replace with your actual Twitter handle
+    site: '@drawgle', // Replace with your actual Twitter handle
     cardType: 'summary_large_image',
   },
   instagram: {
-    handle: '@unrealshotai', // Replace with your actual Instagram handle
+    handle: '@drawgle', // Replace with your actual Instagram handle
   },
 };
 
 // Organization Schema for Structured Data
 export const organizationSchema: OrganizationSchema = {
   '@type': 'Organization',
-  name: 'Unrealshot AI',
+  name: 'Drawgle',
   url: defaultSEO.siteUrl,
   logo: `${defaultSEO.siteUrl}/logo.png`, // Ensure this path is correct
   description: defaultSEO.description,
@@ -117,11 +117,11 @@ export const organizationSchema: OrganizationSchema = {
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
-    email: 'support@unrealshot.com', // Replace with your support email
+    email: 'support@drawgle.com', // Replace with your support email
   },
   sameAs: [
-    'https://x.com/unrealshotai', // Replace with your actual social links
-    'https://instagram.com/unrealshotai',
+    'https://x.com/drawgle', // Replace with your actual social links
+    'https://instagram.com/drawgle',
   ],
 };
 // --- Page-specific SEO configurations ---
